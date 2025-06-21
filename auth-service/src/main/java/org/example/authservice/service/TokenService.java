@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.example.authservice.entity.ListToken;
 
 import org.example.authservice.repository.ListTokenRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
