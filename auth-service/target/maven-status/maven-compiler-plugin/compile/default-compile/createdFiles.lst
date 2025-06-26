@@ -1,5 +1,6 @@
 org\example\authservice\service\IAuthService.class
 org\example\authservice\entity\users$usersBuilder.class
+org\example\authservice\config\WebClientConfig.class
 org\example\authservice\entity\CustomUserDetailsService.class
 org\example\authservice\JWT\JwtAuthenticationFilter.class
 org\example\authservice\dto\UsersLogin.class

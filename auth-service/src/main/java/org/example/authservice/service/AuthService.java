@@ -5,51 +5,57 @@ import org.example.authservice.entity.users;
 import org.example.authservice.repository.UsersRepository;
 import org.example.authservice.utils.GenerateUser;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class AuthService implements IAuthService {
     public final UsersRepository usersRepository;
-
-    @Override
-    public users login(String email, String password) {
-        if (checkEmail(email) && checkPassword(email, password))
-                return null ;
-        return usersRepository.getByEmail(email);
-    }
-
-    @Override
-    public boolean logout() {
-        return false;
-    }
-
+    private final PasswordEncoder passwordEncoder;
     @Override
     public boolean register(UsersRegister usersRegister) {
         String email = usersRegister.getEmail();
-        String password = usersRegister.getPassword_hash();
         String username = usersRegister.getUsername();
+        String rawPassword = usersRegister.getPassword_hash();
+
         if(usersRepository.existsByEmail(email)) {
             return false;
         }
+
+        String encodedPassword = passwordEncoder.encode(rawPassword);
+        System.out.println("Raw Password: " + rawPassword);
+        System.out.println("Encoded Password: " + encodedPassword);
         // SAVE USER INTO DB
-        users u = GenerateUser.generateUserRegister(email,password,username);
+        users u = GenerateUser.generateUserRegister(email, username, encodedPassword);
         usersRepository.save(u);
         return true;
     }
     @Override
-    public boolean checkPassword(String email, String password) {
-        return password.equals(usersRepository.getPasswordByEmail(email));
+    public Optional<users> login(String email, String password) {
+        if (!checkEmail(email)) {
+            System.out.println("Email already exists");
+            return Optional.empty();
+        }
+        if (!checkPassword(email, password)) {
+            System.out.println("Password doesn't match");
+            return Optional.empty();
+        }
+        return usersRepository.findByEmail(email);
     }
-
     @Override
     public boolean checkEmail(String email) {
         return usersRepository.existsByEmail(email);
     }
-
-    public users findUserById(UUID uuid) {
-        return usersRepository.getUserById((uuid));
+    public boolean checkPassword(String email, String rawPassword) {
+        String encodedPassword = usersRepository.getPasswordByEmail(email);
+        return passwordEncoder.matches(rawPassword, encodedPassword);
+    }
+    public Optional<users> findUserById(UUID uuid) {
+        return usersRepository.findById((uuid));
     }
 }
