@@ -12,5 +12,4 @@ public class UsersLogin {
     private String email;
     @Length(message = "Password length is least 6 character" , min = 6)
     private String password_hash;
-
 }

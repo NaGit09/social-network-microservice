@@ -4,20 +4,20 @@ spring:
   main:
     web-application-type: reactive
   application:
-    name: api-gateway  # Tên ứng dụng API Gateway, giúp Eureka nhận diện
+    name: api-gateway
   cloud:
     config:
-      enabled: false  # Tắt Spring Cloud Config
+      enabled: false
     gateway:
       server:
         webflux:
           routes:
             - id: auth-service
-              uri: lb://AUTH-SERVICE  # Định tuyến yêu cầu đến Auth Service qua Eureka
+              uri: lb://AUTH-SERVICE
               predicates:
-                        - Path=/auth/**  # Định tuyến yêu cầu có path /auth/** đến Auth Service
+                        - Path=/auth/**
     eureka:
       client:
         service-url:
-          defaultZone: http://localhost:8761/eureka/  # URL của Eureka Server
+          defaultZone: http://localhost:8761/eureka/
 
