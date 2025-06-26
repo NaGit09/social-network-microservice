@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/auth-service/AuthService.iml" filepath="$PROJECT_DIR$/auth-service/AuthService.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-discovery/service-discovery.iml" filepath="$PROJECT_DIR$/service-discovery/service-discovery.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/social-network-microservice.iml" filepath="$PROJECT_DIR$/.idea/social-network-microservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-cloud-config-server/spring-cloud-config-server.iml" filepath="$PROJECT_DIR$/spring-cloud-config-server/spring-cloud-config-server.iml" />

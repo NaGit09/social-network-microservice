@@ -1,5 +1,5 @@
-server :
-  port : 8080
+server:
+  port: 8080
 spring:
   main:
     web-application-type: reactive
@@ -15,7 +15,12 @@ spring:
             - id: auth-service
               uri: lb://AUTH-SERVICE
               predicates:
-                        - Path=/auth/**
+                - Path=/auth/**
+            - id: upload-service
+              uri:
+                lb://UPLOAD-SERVICE
+              predicates:
+                - Path=/upload/**
     eureka:
       client:
         service-url:
