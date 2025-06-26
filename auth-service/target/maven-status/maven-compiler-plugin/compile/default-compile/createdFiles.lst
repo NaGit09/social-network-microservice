@@ -9,14 +9,9 @@ org\example\authservice\dto\UsersResponse.class
 org\example\authservice\service\AuthService.class
 org\example\authservice\config\SecurityConfig.class
 org\example\authservice\repository\UsersRepository.class
-org\example\authservice\entity\ListToken.class
-org\example\authservice\entity\ListToken$ListTokenBuilder.class
 org\example\authservice\entity\users.class
-org\example\authservice\service\ITokenService.class
 org\example\authservice\controller\AuthController.class
 org\example\authservice\JWT\JwtUtils.class
 org\example\authservice\utils\GenerateUser.class
 org\example\authservice\entity\message.class
-org\example\authservice\repository\ListTokenRepository.class
 org\example\authservice\dto\UsersRegister.class
-org\example\authservice\service\TokenService.class
