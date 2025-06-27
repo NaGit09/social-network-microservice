@@ -16,11 +16,24 @@ spring:
               uri: lb://AUTH-SERVICE
               predicates:
                 - Path=/auth/**
+
             - id: upload-service
               uri:
                 lb://UPLOAD-SERVICE
               predicates:
                 - Path=/upload/**
+
+            - id: like-service
+              uri:
+                lb://LIKE-SERVICE
+              predicates:
+                    - Path=/like/**
+
+            - id: post-service
+              uri:
+                lb://POST-SERVICE
+              predicates:
+                        - Path=/post/**
     eureka:
       client:
         service-url:
